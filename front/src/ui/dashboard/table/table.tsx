@@ -11,33 +11,36 @@ interface TableProps {
 }
 
 const SkeletonRow: FC = () => (
-  <tr className={cls.row}>
-    <td className={cls.col}>
-      <Skeleton height={5} />
-    </td>
-    <td className={cls.col}>
-      <Skeleton height={5} />
-    </td>
-    <td className={cls.col}>
-      <Skeleton height={5} />
-    </td>
-    <td className={cls.col}>
-      <Skeleton height={5} />
-    </td>
-    <td className={cls.col}>
-      <Skeleton height={5} />
-    </td>
-    <td className={cls.col}>
-      <Skeleton height={5} />
-    </td>
-    <td className={cls.col}>
-      <Skeleton height={5} />
-    </td>
-  </tr>
+    <tr className={cls.row}>
+        <td className={cls.col}>
+            <Skeleton height={5}/>
+        </td>
+        <td className={cls.col}>
+            <Skeleton height={5}/>
+        </td>
+        <td className={cls.col}>
+            <Skeleton height={5}/>
+        </td>
+        <td className={cls.col}>
+            <Skeleton height={5}/>
+        </td>
+        <td className={cls.col}>
+            <Skeleton height={5}/>
+        </td>
+        <td className={cls.col}>
+            <Skeleton height={5}/>
+        </td>
+        <td className={cls.col}>
+            <Skeleton height={5}/>
+        </td>
+        <td className={cls.col}>
+            <Skeleton height={5}/>
+        </td>
+    </tr>
 );
 
-const Table = ({ data, isLoading }: TableProps) => {
-  return (
+const Table = ({data, isLoading}: TableProps) => {
+    return (
     <table className={cls.table}>
       <thead className={cls.tableHead}>
         <tr className={cls.tableHeadRow}>
@@ -47,6 +50,7 @@ const Table = ({ data, isLoading }: TableProps) => {
           <th className={cls.tableHeadTitle}>Manzil</th>
           <th className={cls.tableHeadTitle}>Sana</th>
           <th className={cls.tableHeadTitle}>Qazilma miqdori</th>
+          <th className={cls.tableHeadTitle}>Qazilma miqdori farqi</th>
           <th className={cls.tableHeadTitle}>Holat</th>
         </tr>
       </thead>
@@ -89,6 +93,7 @@ const Table = ({ data, isLoading }: TableProps) => {
                   </td>
                   <td className={cls.col}>{item.date}</td>
                   <td className={cls.col}>{item.count}</td>
+                  <td className={cls.col}>{item.diff_count}</td>
                   <td className={cls.col}>
                     <Badge
                       status={item.status}

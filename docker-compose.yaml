@@ -5,6 +5,8 @@ services:
       context: front/
     container_name: xdb_front
     restart: unless-stopped
+    depends_on:
+      - fastapi
     ports:
      - "3000:3000"
   fastapi:

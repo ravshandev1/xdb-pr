@@ -114,21 +114,24 @@ async def root(file: UploadFile = File(...)):
     sheet = workbook.active
     ls = list()
     ids = list()
-    for row in sheet.iter_rows(min_row=2, values_only=True):
-        data = dict()
-        dt = date(int(row[1].split('.')[2]), int(row[1].split('.')[1]), int(row[1].split('.')[0]))
-        app = await Application.create(code=row[0], address=f"{row[2]} {row[3]} {row[5]}", count=row[9], date=dt,
-                                       stir=row[6], name=row[8])
-        data['send_id'] = row[0]
-        data['send_date'] = f"{row[1]} {datetime.now().astimezone(timezone('Asia/Tashkent')).strftime('%H:%M:%S')}"
-        data['ns10'] = row[7].split('/')[0]
-        data['ns11'] = row[7].split('/')[1]
-        data['address'] = row[5]
-        data['tin'] = row[6]
-        data['count'] = row[9]
-        ls.append(data)
-        ids.append({"id": app.id, "year": dt.year, "month": dt.month})
-    send_data_to_tax_task.delay(ls, ids)
+    try:
+        for row in sheet.iter_rows(min_row=2, values_only=True):
+            data = dict()
+            dt = date(int(row[1].split('.')[2]), int(row[1].split('.')[1]), int(row[1].split('.')[0]))
+            app = await Application.create(code=row[0], address=f"{row[2]} {row[3]} {row[5]}", count=row[9], date=dt,
+                                           stir=row[6], name=row[8])
+            data['send_id'] = row[0]
+            data['send_date'] = f"{row[1]} {datetime.now().astimezone(timezone('Asia/Tashkent')).strftime('%H:%M:%S')}"
+            data['ns10'] = row[7].split('/')[0]
+            data['ns11'] = row[7].split('/')[1]
+            data['address'] = row[5]
+            data['tin'] = row[6]
+            data['count'] = row[9]
+            ls.append(data)
+            ids.append({"id": app.id, "year": dt.year, "month": dt.month})
+        send_data_to_tax_task.delay(ls, ids)
+    except Exception as e:
+        print(e)
     return {'success': True}
 
 

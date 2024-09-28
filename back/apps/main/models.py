@@ -21,7 +21,7 @@ class Application(models.Model):
     address = fields.CharField(max_length=450)
     date = fields.DateField()
     count = fields.IntField()
-    diff_count = fields.CharField(default="0", max_length=100, null=True)
+    diff_count = fields.CharField(default="Hali olinmadi", max_length=450)
     status = fields.CharField(max_length=450, default="Yuborilmagan")
     created_at = fields.DatetimeField(auto_now_add=True)
 

@@ -8,7 +8,7 @@ import asyncio
 async def create_superuser():
     await Tortoise.init(config=TORTOISE_ORM)
     password = hashed_password('Pass@123')
-    await User.create(phone='admin', password=password, superuser=True)
+    await User.create(phone='+998900000000', password=password, superuser=True)
     print("Admin created successfully")
     await Tortoise.close_connections()
 

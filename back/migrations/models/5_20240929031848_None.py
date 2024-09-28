@@ -17,13 +17,16 @@ CREATE TABLE IF NOT EXISTS "application" (
     "address" VARCHAR(450) NOT NULL,
     "date" DATE NOT NULL,
     "count" INT NOT NULL,
-    "status" INT NOT NULL  DEFAULT 0,
+    "diff_count" VARCHAR(450) NOT NULL  DEFAULT 'Hali olinmadi',
+    "status" VARCHAR(450) NOT NULL  DEFAULT 'Yuborilmagan',
     "created_at" TIMESTAMPTZ NOT NULL  DEFAULT CURRENT_TIMESTAMP
 );
 CREATE TABLE IF NOT EXISTS "user" (
     "id" SERIAL NOT NULL PRIMARY KEY,
+    "name" VARCHAR(100),
     "phone" VARCHAR(20) NOT NULL UNIQUE,
     "password" VARCHAR(100) NOT NULL,
+    "superuser" BOOL NOT NULL  DEFAULT False,
     "created_at" TIMESTAMPTZ NOT NULL  DEFAULT CURRENT_TIMESTAMP
 );"""
 
