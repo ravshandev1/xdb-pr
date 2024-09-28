@@ -1,0 +1,15 @@
+.container {
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  height: 54px;
+  gap: 10px;
+  color: var(--secondary);
+}
+
+.container:hover,
+.active {
+  background-color: #ebeffa;
+  color: var(--primary-blue);
+}

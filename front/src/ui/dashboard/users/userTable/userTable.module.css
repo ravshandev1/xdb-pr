@@ -1,0 +1,58 @@
+.table {
+  width: 100%;
+  box-shadow: 0 0 10px var(--secondary-soft);
+  background-color: var(--white);
+}
+
+.tableHead {
+  background-color: var(--secondary-soft);
+  border-radius: 10px 10px 0 0;
+
+  .tableHeadRow {
+    .tableHeadTitle {
+      padding: 15px;
+      font-size: 14px;
+      color: var(--secondary);
+      text-align: left;
+    }
+  }
+}
+
+.tableBody {
+  width: 100%;
+  .row {
+    &:not(:last-child) {
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .col {
+      padding: 15px 10px;
+      font-size: 14px;
+      color: var(--black);
+      text-align: left;
+      vertical-align: top;
+      word-wrap: break-word; /* Ensure long words break and wrap */
+      word-break: break-word; /* Break words at the boundaries */
+      white-space: normal;
+    }
+  }
+
+  .empty {
+    width: 100%;
+    height: 400px;
+
+    padding: 20px;
+    text-align: center;
+
+    .emptyImage {
+      display: block;
+      margin: 0 auto;
+    }
+
+    .emptyText {
+      font-size: 24px;
+      font-weight: 600;
+      margin-top: 20px;
+    }
+  }
+}

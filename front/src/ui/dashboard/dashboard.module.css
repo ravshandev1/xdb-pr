@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  width: 100%;
+}
+
+.aside {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--white);
+  flex: 1;
+  border-right: 1px solid var(--border-color);
+  padding: 20px;
+  height: 100vh;
+  transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.aside[data-open="true"] {
+  flex: 0.2;
+}
+
+.content {
+  flex: 4;
+  padding: 40px;
+}

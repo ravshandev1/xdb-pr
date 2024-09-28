@@ -1,0 +1,57 @@
+.badgeContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 5px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
+
+.blue {
+  background-color: #baeefc;
+  color: #508491;
+}
+
+.green {
+  background-color: #abe9dc;
+  color: #2e5d53;
+}
+
+.red {
+  background-color: #f9e0dc;
+  color: #873239;
+}
+
+.gray {
+  background-color: #6b7280;
+}
+
+.tooltip {
+  visibility: hidden;
+  background-color: #1f2937;
+  color: #fff;
+  text-align: left;
+  padding: 10px;
+  border-radius: 8px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250px;
+  font-size: 12px;
+  line-height: 1.5;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.badgeContainer:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}

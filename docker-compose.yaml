@@ -1,0 +1,29 @@
+version: "3"
+services:
+  front:
+    build:
+      context: front/
+    container_name: xdb_front
+    restart: unless-stopped
+    ports:
+     - "3000:3000"
+  fastapi:
+    build:
+      context: back/
+    container_name: xdb_fastapi
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+  redis:
+    image: redis:alpine
+    container_name: xdb_redis
+    restart: unless-stopped
+  celery:
+    build:
+      dockerfile: celery-dockerfile
+      context: back/
+    restart: unless-stopped
+    container_name: xdb_celery
+    depends_on:
+      - fastapi
+      - redis

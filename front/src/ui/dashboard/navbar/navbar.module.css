@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.links {
+  .title {
+    font-weight: 600;
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .refreshButton {
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 24px;
+    color: var(--secondary);
+
+    &:hover {
+      color: var(--black);
+    }
+  }
+}

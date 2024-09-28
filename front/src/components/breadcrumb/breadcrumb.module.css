@@ -1,0 +1,13 @@
+.breadcrumb {
+  .link {
+    font-size: 14px;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .current {
+    font-size: 14px;
+    color: var(--secondary);
+  }
+}

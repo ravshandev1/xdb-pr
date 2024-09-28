@@ -1,0 +1,48 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9;
+    padding: 24px;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--white);
+    border-radius: 16px;
+    padding: 40px;
+
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 0 2px 0 rgba(145, 158, 171, 0.08),
+      0 12px 24px -4px rgba(145, 158, 171, 0.08);
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+    .title {
+      font-weight: 700;
+      margin-bottom: 16px;
+      font-size: 1.5rem;
+    }
+
+    .formItem {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 24px;
+
+      .label {
+        font-size: 14px;
+        color: var(--secondary);
+      }
+    }
+  }
+}

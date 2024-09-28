@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #212b36;
+  --bg-color: #f9fafb;
+  --white: #fff;
+  --black: #000;
+  --secondary: #637381;
+  --secondary-soft: #f2f6f9;
+  --primary-blue: #1976d2;
+  --border-color: rgba(145, 158, 171, 0.24);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--primary);
+  line-height: 1.5;
+  font-size: 1rem;
+  font-family: Public Sans, sans-serif;
+  font-weight: 400;
+  background-color: var(--bg-color);
+}

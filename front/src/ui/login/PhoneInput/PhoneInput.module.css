@@ -1,0 +1,15 @@
+.phoneInput {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(145, 158, 171, 0.24);
+  outline: none;
+
+  &:hover,
+  &:focus {
+    border-color: var(--black);
+  }
+
+  &.error {
+    border-color: red;
+  }
+}
