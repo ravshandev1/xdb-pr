@@ -24,7 +24,7 @@ def send_data_to_tax_task(ls: list[dict], ids: list[dict]):
             patch(f"{ENV.get('BASE_URL')}/application/{j['id']}", json={"status": res.json()["text"]})
         else:
             patch(f"{ENV.get('BASE_URL')}/application/{j['id']}", json={"status": "Muvofiqiyatli"})
-        # res = post(f"{ENV.get('TAX_API')}", headers={'Content-Type': 'application/json'},
+        # res = get(f"{ENV.get('TAX_API')}", headers={'Content-Type': 'application/json'},
         #            json={"tin": i['tin'], "periodYear": j['year'], "periodMonth": j['month']})
         # if res.status_code >= 400:
         #     patch(f"{ENV.get('BASE_URL')}/application/{j['id']}", json={"diff_count": "Soliqni API si ishlamadi!"})

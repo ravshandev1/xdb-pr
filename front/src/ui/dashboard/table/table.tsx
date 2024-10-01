@@ -10,6 +10,7 @@ interface TableProps {
   isLoading: boolean;
 }
 
+
 const SkeletonRow: FC = () => (
     <tr className={cls.row}>
         <td className={cls.col}>
