@@ -18,19 +18,19 @@ app.autodiscover_tasks()
 def send_data_to_tax_task(ls: list[dict], ids: list[dict]):
     for i, j in zip(ls, ids):
         res = post(f"{ENV['TAX_API']}", json=i, headers={'Content-Type': 'application/json'})
-        if res.status_code >= 400:
+        if res.status_code >= 500:
             patch(f"{ENV.get('BASE_URL')}/application/{j['id']}", json={"status": "Soliqni API si ishlamadi!"})
-        # elif res.status_code >= 400:
-        #     patch(f"{ENV.get('BASE_URL')}/application/{j['id']}", json={"status": res.json()["text"]})
+        elif res.status_code >= 400:
+            patch(f"{ENV.get('BASE_URL')}/application/{j['id']}", json={"status": res.json()["text"]})
         else:
             patch(f"{ENV.get('BASE_URL')}/application/{j['id']}", json={"status": "Muvofiqiyatli"})
-        res = post(f"{ENV.get('TAX_API')}", headers={'Content-Type': 'application/json'},
-                   json={"tin": i['tin'], "periodYear": j['year'], "periodMonth": j['month']})
-        if res.status_code >= 400:
-            patch(f"{ENV.get('BASE_URL')}/application/{j['id']}", json={"diff_count": "Soliqni API si ishlamadi!"})
+        # res = post(f"{ENV.get('TAX_API')}", headers={'Content-Type': 'application/json'},
+        #            json={"tin": i['tin'], "periodYear": j['year'], "periodMonth": j['month']})
+        # if res.status_code >= 400:
+        #     patch(f"{ENV.get('BASE_URL')}/application/{j['id']}", json={"diff_count": "Soliqni API si ishlamadi!"})
         # elif res.status_code >= 400:
         #     patch(f"{ENV.get('BASE_URL')}/application/{j['id']}", json={"diff_count": res.json()["text"]})
-        else:
-            patch(f"{ENV.get('BASE_URL')}/application/{j['id']}", json={"diff_count": res.json()["count"]})
+        # else:
+        #     patch(f"{ENV.get('BASE_URL')}/application/{j['id']}", json={"diff_count": res.json()["count"]})
 
     return "Got the response"
