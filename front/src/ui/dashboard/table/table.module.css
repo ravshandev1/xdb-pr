@@ -47,10 +47,10 @@
       padding: 15px 10px;
       font-size: 14px;
       color: var(--black);
-      /* white-space: nowrap;
+      white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      max-width: 200px; */
+      max-width: 200px;
     }
   }
 
@@ -70,6 +70,19 @@
       font-size: 24px;
       font-weight: 600;
       margin-top: 20px;
+    }
+  }
+
+  .sendBtn {
+    background-color: var(--primary-blue);
+    padding: 6px;
+    border-radius: 8px;
+    color: white;
+    font-size: 12px;
+    margin-left: 5px;
+
+    &:disabled {
+      opacity: 0.5;
     }
   }
 }

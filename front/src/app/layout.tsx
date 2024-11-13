@@ -9,6 +9,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import { DateProvider } from "@/contexts/DateContext";
+import { SearchProvider } from "@/contexts/SearchContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,10 +29,12 @@ export default function RootLayout({
         <ChakraProvider>
           <AuthProvider>
             <DateProvider>
-              <QueryClientProvider client={queryClient}>
-                <ToastContainer />
-                {children}
-              </QueryClientProvider>
+              <SearchProvider>
+                <QueryClientProvider client={queryClient}>
+                  <ToastContainer />
+                  {children}
+                </QueryClientProvider>
+              </SearchProvider>
             </DateProvider>
           </AuthProvider>
         </ChakraProvider>

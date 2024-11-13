@@ -43,14 +43,17 @@ export interface IApplicationData {
   code: number;
   count: number;
   created_at: Date;
-  name: string;
+  subject_name: string;
   stir: number;
+  diff_count: string | number;
+  different: string | number;
 }
 
 export const IStatus = {
   Yuborilmagan: "Yuborilmagan",
   Muvaffaqiyatli: "Muvaffaqiyatli",
   Xatolik: "Xatolik",
+  Takrorlangan: "Takrorlangan",
 };
 
 export type RoleType = "superadmin" | "user" | string;

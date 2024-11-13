@@ -4,44 +4,61 @@ import cls from "./table.module.css";
 import Badge from "./badge/badge";
 import { Skeleton, Tooltip } from "@chakra-ui/react";
 import { FC } from "react";
+import { useGetApplications } from "@/hook/useApplication";
 
 interface TableProps {
   data: IApplicationData[] | undefined;
   isLoading: boolean;
 }
 
-
 const SkeletonRow: FC = () => (
-    <tr className={cls.row}>
-        <td className={cls.col}>
-            <Skeleton height={5}/>
-        </td>
-        <td className={cls.col}>
-            <Skeleton height={5}/>
-        </td>
-        <td className={cls.col}>
-            <Skeleton height={5}/>
-        </td>
-        <td className={cls.col}>
-            <Skeleton height={5}/>
-        </td>
-        <td className={cls.col}>
-            <Skeleton height={5}/>
-        </td>
-        <td className={cls.col}>
-            <Skeleton height={5}/>
-        </td>
-        <td className={cls.col}>
-            <Skeleton height={5}/>
-        </td>
-        <td className={cls.col}>
-            <Skeleton height={5}/>
-        </td>
-    </tr>
+  <tr className={cls.row}>
+    <td className={cls.col}>
+      <Skeleton height={5} />
+    </td>
+    <td className={cls.col}>
+      <Skeleton height={5} />
+    </td>
+    <td className={cls.col}>
+      <Skeleton height={5} />
+    </td>
+    <td className={cls.col}>
+      <Skeleton height={5} />
+    </td>
+    <td className={cls.col}>
+      <Skeleton height={5} />
+    </td>
+    <td className={cls.col}>
+      <Skeleton height={5} />
+    </td>
+    <td className={cls.col}>
+      <Skeleton height={5} />
+    </td>
+    <td className={cls.col}>
+      <Skeleton height={5} />
+    </td>
+    <td className={cls.col}>
+      <Skeleton height={5} />
+    </td>
+  </tr>
 );
 
-const Table = ({data, isLoading}: TableProps) => {
-    return (
+const Table = ({ data, isLoading }: TableProps) => {
+  const {
+    sendAppliction,
+    isLoading: sendLoading,
+    refetch,
+  } = useGetApplications();
+
+  const handleSend = (item: IApplicationData) => {
+    sendAppliction.mutate(Number(item.id), {
+      onSuccess: () => {
+        refetch();
+      },
+    });
+  };
+
+  return (
     <table className={cls.table}>
       <thead className={cls.tableHead}>
         <tr className={cls.tableHeadRow}>
@@ -51,7 +68,8 @@ const Table = ({data, isLoading}: TableProps) => {
           <th className={cls.tableHeadTitle}>Manzil</th>
           <th className={cls.tableHeadTitle}>Sana</th>
           <th className={cls.tableHeadTitle}>Qazilma miqdori</th>
-          <th className={cls.tableHeadTitle}>Qazilma miqdori farqi</th>
+          <th className={cls.tableHeadTitle}>Kutilma</th>
+          <th className={cls.tableHeadTitle}>Farq</th>
           <th className={cls.tableHeadTitle}>Holat</th>
         </tr>
       </thead>
@@ -84,17 +102,36 @@ const Table = ({data, isLoading}: TableProps) => {
             ) : (
               data?.map((item) => (
                 <tr className={cls.row} key={item.id}>
-                  <td className={cls.col}>{item.id}</td>
                   <td className={cls.col}>
-                    <Tooltip label={item.name}>{item.name}</Tooltip>
+                    <Tooltip label={String(item.id)}>{String(item.id)}</Tooltip>
                   </td>
-                  <td className={cls.col}>{item.stir}</td>
+                  <td className={cls.col}>
+                    <Tooltip label={item.subject_name}>
+                      {item.subject_name}
+                    </Tooltip>
+                  </td>
+                  <td className={cls.col}>
+                    <Tooltip label={item.stir}>{String(item.stir)}</Tooltip>
+                  </td>
                   <td className={cls.col}>
                     <Tooltip label={item.address}>{item.address}</Tooltip>
                   </td>
                   <td className={cls.col}>{item.date}</td>
-                  <td className={cls.col}>{item.count}</td>
-                  <td className={cls.col}>{item.diff_count}</td>
+                  <td className={cls.col}>
+                    <Tooltip label={String(item.count)}>
+                      {String(item.count)}
+                    </Tooltip>
+                  </td>
+                  <td className={cls.col}>
+                    <Tooltip label={String(item.diff_count)}>
+                      {String(item.diff_count)}
+                    </Tooltip>
+                  </td>
+                  <td className={cls.col}>
+                    <Tooltip label={String(item.different)}>
+                      {String(item.different)}
+                    </Tooltip>
+                  </td>
                   <td className={cls.col}>
                     <Badge
                       status={item.status}
@@ -104,6 +141,15 @@ const Table = ({data, isLoading}: TableProps) => {
                           : ""
                       }
                     />
+                    {item.status === IStatus.Takrorlangan && (
+                      <button
+                        disabled={sendLoading}
+                        onClick={() => handleSend(item)}
+                        className={cls.sendBtn}
+                      >
+                        Yuborish
+                      </button>
+                    )}
                   </td>
                 </tr>
               ))

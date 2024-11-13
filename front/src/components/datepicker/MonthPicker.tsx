@@ -17,7 +17,6 @@ const months = [
   "December",
 ];
 
-// Prop interfeysi
 interface Props {
   onChange?: (number: number | null, year: number | null) => void;
 }
@@ -40,6 +39,9 @@ const MonthPicker: React.FC<Props> = ({ onChange }) => {
   const handleYearChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const year = parseInt(e.target.value, 10);
     setSelectedYear(isNaN(year) ? null : year);
+    if (onChange) {
+      onChange(selectedMonth, year);
+    }
   };
 
   return (
@@ -69,6 +71,12 @@ const MonthPicker: React.FC<Props> = ({ onChange }) => {
                 value={selectedYear ?? ""}
                 onChange={handleYearChange}
                 className="!px-2"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    setIsOpen(false);
+                    onChange && onChange(selectedMonth, selectedYear);
+                  }
+                }}
               />
             </div>
             <div className="grid grid-cols-3 gap-2">

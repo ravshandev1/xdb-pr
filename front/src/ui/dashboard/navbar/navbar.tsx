@@ -2,7 +2,7 @@ import Breadcrumb from "@/components/breadcrumb/breadcrumb";
 import cls from "./navbar.module.css";
 import Button from "@/components/button/button";
 import { LuPlus } from "react-icons/lu";
-import { IoReload } from "react-icons/io5";
+import { IoDownload, IoReload } from "react-icons/io5";
 import { useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useDisclosure } from "@chakra-ui/react";
@@ -13,10 +13,11 @@ import { useGetApplications } from "@/hook/useApplication";
 import MonthPicker from "@/components/datepicker/MonthPicker";
 import { useDate } from "@/contexts/DateContext";
 import { toast } from "react-toastify";
+import { useSearch } from "@/contexts/SearchContext";
 
 const Navbar = () => {
   const [file, setFile] = useState<File | null>(null);
-  const { setDate } = useDate();
+  const { setDate, date } = useDate();
   const pathname = usePathname();
   const { refetch, isRefetching } = useGetUsers();
   const {
@@ -29,6 +30,7 @@ const Navbar = () => {
   const isDashboard = pathname === "/dashboard";
   const isSettingsPage = pathname.includes("/dashboard/settings");
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const { searchValue, setSearchValue } = useSearch();
 
   const {
     isOpen: isConfirmOpen,
@@ -73,6 +75,8 @@ const Navbar = () => {
     }
   };
 
+  console.log(date?.getMonth(), "here");
+
   return (
     <header className={cls.container}>
       <div className={cls.links}>
@@ -81,6 +85,13 @@ const Navbar = () => {
       </div>
       {!isSettingsPage && (
         <div className={cls.actions}>
+          <input
+            className="p-2 border rounded-lg"
+            type="number"
+            placeholder="STIR"
+            value={searchValue}
+            onChange={(e) => setSearchValue(parseInt(e.target.value))}
+          />
           {isDashboard && (
             <MonthPicker
               onChange={(month, year) =>
@@ -89,6 +100,20 @@ const Navbar = () => {
                   : setDate(null)
               }
             />
+          )}
+          {date ? (
+            <a
+              href={`${
+                process.env.NEXT_PUBLIC_API_URL
+              }/applications/${date.getFullYear()}/${date.getMonth() + 1}`}
+              className={cls.downloadButton}
+              download
+              title="Download"
+            >
+              <IoDownload />
+            </a>
+          ) : (
+            ""
           )}
           <button
             onClick={() => {

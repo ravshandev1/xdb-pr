@@ -28,4 +28,16 @@
       color: var(--black);
     }
   }
+
+  .downloadButton {
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 24px;
+    background-color: var(--primary-blue);
+    color: white;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
 }
