@@ -48,27 +48,42 @@ class UserUpdateSchema(BaseModel):
 class ApplicationSchema(BaseModel):
     id: int
     code: int
-    name: str
-    stir: int
-    address: str
     date: date
+    area: str
+    river: str
+    plot: str
+    address: str
+    stir: int
+    dsi: str
+    subject_name: str
     count: int
-    status: str
     diff_count: str
+    different: str
+    status: str
     created_at: datetime
 
     @classmethod
     def to_dict(cls, item):
+        try:
+            different = item.count - int(item.diff_count)
+        except Exception as e:
+            print(e)
+            different = "Soliqdan hali farqi olinmagan!"
         return {
             "id": item.id,
             "code": item.code,
-            "name": item.name,
-            "stir": item.stir,
-            "address": item.address,
             "date": item.date.strftime("%Y-%m-%d"),
+            "area": item.area,
+            "river": item.river,
+            "plot": item.plot,
+            "address": item.address,
+            "stir": item.stir,
+            "dsi": item.dsi,
+            "subject_name": item.subject_name,
             "count": item.count,
-            "status": item.status,
             "diff_count": item.diff_count,
+            "different": different,
+            "status": item.status,
             "created_at": item.created_at.strftime("%Y-%m-%d %H:%M:%S"),
         }
 
@@ -83,3 +98,4 @@ class ApplicationPeriodQuery(BaseModel):
     offset: int = 1
     year: Optional[int] = None
     month: Optional[int] = None
+    stir: Optional[int] = None

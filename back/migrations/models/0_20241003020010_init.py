@@ -12,13 +12,17 @@ async def upgrade(db: BaseDBAsyncClient) -> str:
 CREATE TABLE IF NOT EXISTS "application" (
     "id" SERIAL NOT NULL PRIMARY KEY,
     "code" INT NOT NULL,
-    "name" VARCHAR(250) NOT NULL,
-    "stir" BIGINT NOT NULL,
-    "address" VARCHAR(450) NOT NULL,
     "date" DATE NOT NULL,
+    "area" VARCHAR(250) NOT NULL,
+    "river" VARCHAR(250) NOT NULL,
+    "plot" VARCHAR(250) NOT NULL,
+    "address" VARCHAR(250) NOT NULL,
+    "stir" BIGINT NOT NULL,
+    "dsi" VARCHAR(250) NOT NULL,
+    "subject_name" VARCHAR(250) NOT NULL,
     "count" INT NOT NULL,
-    "diff_count" VARCHAR(450) NOT NULL  DEFAULT 'Hali olinmadi',
-    "status" VARCHAR(450) NOT NULL  DEFAULT 'Yuborilmagan',
+    "diff_count" VARCHAR(450) NOT NULL  DEFAULT 'Олинмаган',
+    "status" VARCHAR(450) NOT NULL  DEFAULT 'Юборилмаган',
     "created_at" TIMESTAMPTZ NOT NULL  DEFAULT CURRENT_TIMESTAMP
 );
 CREATE TABLE IF NOT EXISTS "user" (
