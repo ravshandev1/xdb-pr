@@ -25,9 +25,9 @@ def send_data_to_tax_task(ls: list[dict], ids: list[dict]):
             patch(f"{ENV.get('BASE_URL')}/application/{j['id']}", json={"status": res.json()["text"]})
         else:
             patch(f"{ENV.get('BASE_URL')}/application/{j['id']}", json={"status": "Muvofiqiyatli"})
-        token = post(f"{ENV.get('TAX_API')}/water-supply/api/authenticate/login", json={""})
+        token = post(f"{ENV.get('TAX_API')}/water-supply/api/authenticate/login", json={"username": "", "password": ""})
         res = get(f"{ENV.get('TAX_API')}/water-supply/api/water-supply/get-gravel-info",
-                  headers={'Content-Type': 'application/json', 'Authorization': f'Bearer {token}'},
+                  headers={'Content-Type': 'application/json', 'Authorization': f'Bearer {token.json()}'},
                   json={"tin": i['tin'], "periodYear": j['year'], "periodMonth": j['month']})
         if res.status_code >= 400:
             patch(f"{ENV.get('BASE_URL')}/application/{j['id']}", json={"diff_count": "Soliqni API si ishlamadi!"})
